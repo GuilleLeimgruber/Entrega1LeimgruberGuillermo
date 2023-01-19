@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+ Lista de Menus
+{% endblock %}
+
+{% block content %}
+
+{% for menu in menus %}
+
+<p>{{menu.name}}</p>
+
+<p> Precio: ${{menu.price}}</p>
+
+{% if menu.stock == True %}
+
+<p>con stock</p>
+
+{% else %}
+
+<p>sin stock</p>
+
+
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}

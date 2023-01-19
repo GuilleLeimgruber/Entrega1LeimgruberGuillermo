@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block title %} 
+ Lista de reservas
+{% endblock %}
+
+{% block content %}
+
+{% for reservation in reservations %}
+
+<p>{{reservation.name}}</p>
+
+<p> comensales: {{reservation.dinner}}</p>
+
+<p> Fecha de la reserva: {{reservation.reservation_date}}</p>
+
+
+{% endfor %}
+
+{% endblock %}
