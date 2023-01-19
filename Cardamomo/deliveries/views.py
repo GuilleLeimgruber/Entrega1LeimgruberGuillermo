@@ -8,9 +8,11 @@ from deliveries.models import Deliveries
 
 
 def create_delivery(request):
+   
 
-    return HttpResponse('Se creo un nuevo envio')
+    Deliveries.objects.create(client = 'Emilia Leimgruber', menu = 'Cochinita pibil', create_time =(), payment_method = 'card')
 
+    return HttpResponse('Se creo un nuevo pedido')
 
 
 def list_deliveries(request):
