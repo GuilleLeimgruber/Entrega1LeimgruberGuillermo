@@ -17,3 +17,6 @@ class Deliveries(models.Model):
     menu = models.CharField(max_length=100)
     create_time = models.DateTimeField(auto_now_add=True)
     payment_method = models.CharField(choices=CHOICES, max_length=8)
+
+    def __str__(self):
+        return self.client
