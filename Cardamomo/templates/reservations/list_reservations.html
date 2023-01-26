@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
-
 {% block title %} 
  Lista de reservas
 {% endblock %}
 
 {% block content %}
 
-<h1 style="color: darkmagenta;"> Listado de reservas</h1>
+<h1 style="color: crimson;"> Listado de reservas</h1>
+
+<h2> Crear nueva reserva </h2>  <a href="/reservations/create-reservation/" class="btn btn-primary">Crear</a>
 
 {% for reservation in reservations %}
 

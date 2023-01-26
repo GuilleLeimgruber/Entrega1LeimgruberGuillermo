@@ -6,13 +6,30 @@ import datetime
 
 from reservations.models import Reservations
 
+from reservations.forms import ReservationsForm
+
 
 # Create your views here.
 
 def create_reservation(request):
-    Reservations.objects.create(name = 'Carolina Gimenez', dinner = 10, reservation_date = "2023-01-19")
 
-    return HttpResponse('Se creo una nueva reserva')
+    if request.method == 'GET':
+        context = {'form': ReservationsForm()}
+
+        return render(request, 'reservations/create_reservation.html', context=context) 
+
+    elif request.method == 'POST':
+
+        form = ReservationsForm(request.POST)
+        if form.is_valid():
+
+            Reservations.objects.create(name = form.cleaned_data['name'], dinner =form.cleaned_data['dinner'], reservation_date = form.cleaned_data['reservation_date'],)
+            context = {'message': 'Reserva creada'}
+            return render(request, 'reservations/create_reservation.html', context=context)
+
+        else:
+                context = {'form_errors': form.errors, 'form': ReservationsForm()}
+                return render(request, 'reservations/create_reservation.html', context=context)
 
 
 

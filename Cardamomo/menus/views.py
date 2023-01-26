@@ -4,15 +4,33 @@ from django.http import HttpResponse
 
 from menus.models import Menus, Categories
 
+from menus.forms import MenuForm
+
 # Create your views here.
 
 
 def create_menu(request):
 
-    Menus.objects.create(name = 'Cochinita Pibil', price = 1400, stock = True)
+    if request.method == 'GET':
 
-    return HttpResponse('Se creo un nuevo menu')
+        context = {'form': MenuForm()}
+        
+        return render(request, 'menus/create_menu.html', context=context)
 
+
+    elif request.method == 'POST':
+
+        form = MenuForm(request.POST)
+        if form.is_valid():
+
+            Menus.objects.create(name = form.cleaned_data['name'], price =form.cleaned_data['price'], stock = form.cleaned_data['stock'],)
+            context = {'message': 'Menu creado'}
+            return render(request, 'menus/create_menu.html', context=context)
+
+        else:
+                context = {'form_errors': form.errors, 'form': MenuForm()}
+                return render(request, 'menus/create_menu.html', context=context)
+      
 
 
 def list_menus(request):
