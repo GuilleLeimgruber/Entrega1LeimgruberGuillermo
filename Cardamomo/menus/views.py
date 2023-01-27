@@ -35,8 +35,15 @@ def create_menu(request):
 
 def list_menus(request):
 
-    all_menus = Menus.objects.all()
-    context = {'menus': all_menus}
+    if 'search' in request.GET:
+        search = request.GET['search']
+
+        menus = Menus.objects.filter(name__contains=search)
+    
+    else:
+
+        menus = Menus.objects.all()
+    context = {'menus': menus}
 
     return render(request, 'menus/list_menus.html', context=context)
 

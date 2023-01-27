@@ -4,15 +4,35 @@ from django.http import HttpResponse
 
 from deliveries.models import Deliveries
 
+from deliveries.forms import DeliveryForm
+
 # Create your views here.
 
 
 def create_delivery(request):
-   
 
-    Deliveries.objects.create(client = 'Emilia Leimgruber', menu = 'Cochinita pibil', create_time =(), payment_method = 'card')
+    if request.method == 'GET':
 
-    return HttpResponse('Se creo un nuevo pedido')
+        context = {'form': DeliveryForm()}
+        
+        return render(request, 'deliveries/create_delivery.html', context=context)
+
+
+    elif request.method == 'POST':
+
+        form = DeliveryForm(request.POST)
+        if form.is_valid():
+
+            Deliveries.objects.create(client = form.cleaned_data['client'], menu = form.cleaned_data['menu'], create_time = form.cleaned_data['create_time'], payment_method = form.cleaned_data['payment_method'],)
+            context = {'message': 'Delivery creado'}
+            return render(request, 'deliveries/create_delivery.html', context=context)
+
+        else:
+                context = {'form_errors': form.errors, 'form': DeliveryForm()}
+                return render(request, 'deliveries/create_delivery.html', context=context)
+      
+
+
 
 
 def list_deliveries(request):
