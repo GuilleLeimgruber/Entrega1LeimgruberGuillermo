@@ -30,17 +30,35 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
+BASE_APPS = ['django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'menus',
+    ]
+
+THIRD_APPS = []
+
+
+MY_APPS = ['menus',
     'deliveries',
     'reservations',
+    'providers',
+
 ]
+
+
+
+
+
+
+
+
+INSTALLED_APPS = BASE_APPS + THIRD_APPS + MY_APPS
+    
+    
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

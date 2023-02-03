@@ -23,12 +23,19 @@ def create_delivery(request):
         form = DeliveryForm(request.POST)
         if form.is_valid():
 
-            Deliveries.objects.create(client = form.cleaned_data['client'], menu = form.cleaned_data['menu'], create_time = form.cleaned_data['create_time'], payment_method = form.cleaned_data['payment_method'],)
+            Deliveries.objects.create(
+                client = form.cleaned_data['client'], 
+                menu = form.cleaned_data['menu'], 
+                payment_method = form.cleaned_data['payment_method'],
+            )
             context = {'message': 'Delivery creado'}
             return render(request, 'deliveries/create_delivery.html', context=context)
 
         else:
-                context = {'form_errors': form.errors, 'form': DeliveryForm()}
+                context = {
+                    'form_errors': form.errors, 
+                    'form': DeliveryForm()
+                }
                 return render(request, 'deliveries/create_delivery.html', context=context)
       
 

@@ -23,12 +23,19 @@ def create_reservation(request):
         form = ReservationsForm(request.POST)
         if form.is_valid():
 
-            Reservations.objects.create(name = form.cleaned_data['name'], dinner =form.cleaned_data['dinner'], reservation_date = form.cleaned_data['reservation_date'],)
+            Reservations.objects.create(
+                name = form.cleaned_data['name'], 
+                dinner = form.cleaned_data['dinner'], 
+                reservation_date = form.cleaned_data['reservation_date'],
+            )
             context = {'message': 'Reserva creada'}
             return render(request, 'reservations/create_reservation.html', context=context)
 
         else:
-                context = {'form_errors': form.errors, 'form': ReservationsForm()}
+                context = {
+                    'form_errors': form.errors, 
+                    'form': ReservationsForm()
+                }
                 return render(request, 'reservations/create_reservation.html', context=context)
 
 

@@ -23,12 +23,19 @@ def create_menu(request):
         form = MenuForm(request.POST)
         if form.is_valid():
 
-            Menus.objects.create(name = form.cleaned_data['name'], price =form.cleaned_data['price'], stock = form.cleaned_data['stock'],)
+            Menus.objects.create(
+                name = form.cleaned_data['name'], 
+                price = form.cleaned_data['price'], 
+                stock = form.cleaned_data['stock'],
+            )
             context = {'message': 'Menu creado'}
             return render(request, 'menus/create_menu.html', context=context)
 
         else:
-                context = {'form_errors': form.errors, 'form': MenuForm()}
+                context = {
+                    'form_errors': form.errors, 
+                    'form': MenuForm()
+                }
                 return render(request, 'menus/create_menu.html', context=context)
       
 
@@ -60,6 +67,46 @@ def list_categories(request):
     context = {'categories': all_categories}
 
     return render(request, 'categories/list_categories.html', context=context)   
+
+
+def update_menu(request, id):
+    menu = Menus.objects.get(id=id)
+
+    if request.method == 'GET':
+
+        context = {
+            'form': MenuForm(
+                initial={
+                    'name': menu.name, 
+                    'price': menu.price, 
+                    'sotck': menu.stock,
+                }
+            )
+        }
+        
+        return render(request, 'menus/update_menu.html', context=context)
+
+
+    elif request.method == 'POST':
+
+        form = MenuForm(request.POST)
+        if form.is_valid():
+
+            menu.name = form.cleaned_data['name'], 
+            menu.price = form.cleaned_data['price'], 
+            menu.stock = form.cleaned_data['stock'], 
+            menu.save()
+            
+            context = {'message': 'Menu actualizado'}
+            
+        else:
+                context = {
+                    'form_errors': form.errors, 
+                    'form': MenuForm()
+                }
+        return render(request, 'menus/update_menu.html', context=context)
+      
+
 
 
 
