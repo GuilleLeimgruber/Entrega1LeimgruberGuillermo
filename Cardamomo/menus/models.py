@@ -13,7 +13,14 @@ class Menus(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Menu'
+        verbose_name_plural = 'Menus'
 
 class Categories(models.Model):
     name = models.CharField(max_length=60, unique=True)
+
+
+
+
 

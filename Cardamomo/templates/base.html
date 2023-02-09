@@ -19,36 +19,38 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/about/">about</a> 
+                  </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="/menus/list-menus/">Menus</a> 
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/deliveries/list-deliveries/">Deliverys</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/reservations/list-reservations/">Reservations</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="margin-right: 650px;">
                       <a class="nav-link" href="/providers/list-providers/">Providers</a>
-                  </li>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/users/logout/">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/users/login/">Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/users/signup/">Signup</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="/menus/list-menus/" method="GET">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Busqueda por menu" aria-label="Search" name="search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
@@ -67,34 +69,14 @@
       <!-- Section: Social media -->
       <section class="mb-4">
         <!-- Facebook -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-facebook-f"></i
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/Cardamomorestook-103918635956731" role="button"
+        ><i class="bi bi-facebook"></i>
         ></a>
-  
-        <!-- Twitter -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-twitter"></i
-        ></a>
-  
-        <!-- Google -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-google"></i
-        ></a>
-  
         <!-- Instagram -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-instagram"></i
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/cardamomo.restook/?igshid=OGQ2MjdiOTE%3D" role="button"
+          ><i class="bi bi-instagram"></i>
         ></a>
-  
-        <!-- Linkedin -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-linkedin-in"></i
-        ></a>
-  
-        <!-- Github -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-github"></i
-        ></a>
+       
       </section>
       <!-- Section: Social media -->
   

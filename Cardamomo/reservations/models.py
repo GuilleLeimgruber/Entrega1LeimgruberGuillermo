@@ -12,4 +12,7 @@ class Reservations(models.Model):
    
     def __str__(self):
         return self.name
-        
+
+    class Meta:
+        verbose_name = 'Reservacion'
+        verbose_name_plural = 'Reservaciones'

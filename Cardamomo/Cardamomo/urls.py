@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Cardamomo.views import prueba_template, index
+from Cardamomo.views import prueba_template, index, about
 
 
 
@@ -23,10 +23,12 @@ from Cardamomo.views import prueba_template, index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('prueba/', prueba_template),
-    path('', index, name='index'), 
+    path('', index, name='index'),
+    path('about/', about),
     path('menus/', include('menus.urls')),
     path('deliveries/', include('deliveries.urls')),
     path('reservations/', include('reservations.urls')),
     path('providers/', include('providers.urls')),
+    path('users/', include('users.urls')),
     
 ]
