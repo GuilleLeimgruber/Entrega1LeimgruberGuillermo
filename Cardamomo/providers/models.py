@@ -13,10 +13,10 @@ class Providers(models.Model):
     )
 
 
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=400)
-    phone = models.CharField(max_length=20)
-    tax_category = models.CharField(max_length=50, choices = CHOICES)
+    name = models.CharField(max_length=100, verbose_name= 'nombre')
+    address = models.CharField(max_length=400, verbose_name= 'direccion')
+    phone = models.CharField(max_length=20, verbose_name= 'telefono')
+    tax_category = models.CharField(max_length=50, choices = CHOICES, verbose_name= 'categogia fiscal')
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

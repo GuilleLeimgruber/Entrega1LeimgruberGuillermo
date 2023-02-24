@@ -14,10 +14,10 @@ class Deliveries(models.Model):
     )
         
     
-    client = models.CharField(max_length=100)
-    menu = models.CharField(max_length=100)
-    create_time = models.DateTimeField(auto_now_add=True)
-    payment_method = models.CharField(max_length=13, choices=CHOICES)
+    client = models.CharField(max_length=100, verbose_name= 'cliente')
+    menu = models.CharField(max_length=100, verbose_name= 'menu')
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name= 'Fecha de creacion')
+    payment_method = models.CharField(max_length=13, choices=CHOICES, verbose_name= 'metodo de pago')
 
 
     def __str__(self):
