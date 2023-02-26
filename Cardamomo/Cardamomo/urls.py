@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from Cardamomo.views import prueba_template, index, about
 from django.conf import settings
+
+from Cardamomo.settings import MEDIA_ROOT, MEDIA_URL
 from django.conf.urls.static import static
 
 
